@@ -7,6 +7,8 @@ file_name = "todo_list.txt"                                                     
 limit_tasks = 10                                                                    # Maximum number of tasks allowed
 tasks = []                                                                          # List to store tasks
 
+# Function to view tasks - Displays the current tasks in the to-do list
+# Fajilan, Mark Justin
 def add_task(task):
     if len(tasks) >= limit_tasks:                                                   # Check if the task limit is reached
         print("Task limit reached. Please delete a task before adding a new one.")
@@ -27,5 +29,104 @@ def add_task(task):
     
     print("Task added successfully!")     
     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Main Menu - Function to display the main menu and handle user input
+# Fajilan, Mark Justin
+def main():
+    while True:
+        print("Welcome to EveryDay Life - To-Do List Application")
+        print("Please choose an option:")
+        print("1. Add Task")
+        print("2. Delete Task")
+        print("3. View Tasks")
+        print("4. Complete Task")
+        print("5. Exit")
+        choice = input("Choose an option (1-5): ").strip()
+
+        if choice == '1':
+            add_task()
+        elif choice == '2':
+            delete_task()
+        elif choice == '3':
+            view_tasks()
+        elif choice == '4':
+            complete_task()
+        elif choice == '5':
+            print("Program terminated. Thank you for using the program!")
+            break
+        else:
+            print("Invalid input. Try again.\n")
+
 if __name__ == "__main__":
-    add_task(tasks)  #  This will only run the Add Task function
+    main()
