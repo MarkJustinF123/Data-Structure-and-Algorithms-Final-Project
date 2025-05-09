@@ -7,12 +7,9 @@ file_name = "todo_list.txt"                                                     
 limit_tasks = 10                                                                    # Maximum number of tasks allowed
 tasks = []                                                                          # List to store tasks
 
-<<<<<<< HEAD
 #ADD TASK Logic(Fajilan, Mark Justin C.)
-=======
 # Function to view tasks - Displays the current tasks in the to-do list
 # Fajilan, Mark Justin
->>>>>>> 66b0c5dc76db4f887f03e126b1084209054ff8cb
 def add_task(task):
     if len(tasks) >= limit_tasks:                                                   # Check if the task limit is reached
         print("Task limit reached. Please delete a task before adding a new one.")
@@ -30,10 +27,8 @@ def add_task(task):
             file.write(f"[Not Urgent] {task}\n")                                    # Write the task to the file
         print(f"Task '{task}' added as not urgent and saved successfully.")         # Print confirmation message                                         
     else:
-<<<<<<< HEAD
         print("Invalid input. Please enter 'Y' for urgent or 'N' for not urgent.")  # Print error message
         return
-=======
         print("Invalid input. Please enter 'Y' for urgent or 'N' for not urgent.")
         return
     
@@ -140,4 +135,4 @@ def main():
 
 if __name__ == "__main__":
     main()
->>>>>>> 66b0c5dc76db4f887f03e126b1084209054ff8cb
+
