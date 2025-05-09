@@ -68,7 +68,7 @@ def delete_task():
 def complete_task():
     display_tasks(tasks)                                                                               # Display current tasks
     if not tasks:
-        continue
+        return
     try:
         idx = int(input("Enter the task number to mark as complete: "))                                # Get user input
         if 0 <= idx < len(tasks):                                                                      # Check if the index is valid
