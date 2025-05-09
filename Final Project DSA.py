@@ -7,8 +7,23 @@ file_name = "todo_list.txt"                                                     
 limit_tasks = 10                                                                    # Maximum number of tasks allowed
 tasks = []                                                                          # List to store tasks
 
-#ADD TASK Logic(Fajilan, Mark Justin C.)
-# Function to view tasks - Displays the current tasks in the to-do list
+
+# Function to load tasks from file
+def load_tasks(filename="todo-list.txt"):
+    try:
+        with open(filename, "r") as file:
+            return [line.strip() for line in file.readlines()]
+    except FileNotFoundError:
+        return []
+
+# Function to save tasks to file
+def save_tasks(tasks, filename="todo-list.txt"):
+    with open(filename, "w") as file:
+        for task in tasks:
+            file.write(f"{task}\\n")
+
+
+# Function to add a task - Adds a new task to the to-do list
 # Fajilan, Mark Justin
 def add_task(task):
     if len(tasks) >= limit_tasks:                                                   # Check if the task limit is reached
@@ -19,21 +34,51 @@ def add_task(task):
     priority = input("Is it urgent or not urgent? (Y/N): ").strip().lower()         # Prompt user to enter task priority
     
     if priority == "y":                                                             # If the task is urgent, add it to the beginning of the list
-        with open(file_name, "a") as file:                                          # Open the file in append mode
-            file.write(f"[Urgent] {task}\n")                                        # Write the task to the file
-        print(f"Task '{task}' added as urgent and saved successfully.")             # Print confirmation message
+        formatted_task = f"[Urgent] {task}"
+        tasks.insert(0, formatted_task) 
     elif priority == "n":                                                           # If the task is not urgent, add it to the end of the list
-        with open(file_name, "a") as file:                                          # Open the file in append mode
-            file.write(f"[Not Urgent] {task}\n")                                    # Write the task to the file
-        print(f"Task '{task}' added as not urgent and saved successfully.")         # Print confirmation message                                         
+        formatted_task = f"[Not Urgent] {task}"
+        tasks.append(formatted_task)                                           
     else:
-        print("Invalid input. Please enter 'Y' for urgent or 'N' for not urgent.")  # Print error message
-        return
         print("Invalid input. Please enter 'Y' for urgent or 'N' for not urgent.")
         return
     
     print("Task added successfully!")     
     
+    
+# Function to delete a task - Removes a task from the to-do list
+# Kendric Justine D. Faz
+def delete_task():
+    display_tasks(tasks)                                                                               # Display current tasks
+    if not tasks:                                                                                      # No tasks to delete
+        return                                                                                         # Skip to next iteration
+    try:
+        idx = int(input("Enter the task number to delete: "))                                          # Get user input
+        if 0 <= idx < len(tasks):                                                                      # Check if the index is valid
+            removed = tasks.pop(idx)                                                                   # Remove the task
+            save_tasks(tasks)                                                                          # Save the updated task list
+            print(f"Task Deleted Successfully! ({removed})")                                           # Print success message
+        else:
+            print("Invalid Task Number")                                                               # Invalid index
+    except ValueError:
+        print("Invalid input. Please enter a valid task number.")                                      # Handle non-integer input
+
+# Complete Task - Marks a task as complete
+# Kendric Justine D. Faz
+def complete_task():
+    display_tasks(tasks)                                                                               # Display current tasks
+    if not tasks:
+        continue
+    try:
+        idx = int(input("Enter the task number to mark as complete: "))                                # Get user input
+        if 0 <= idx < len(tasks):                                                                      # Check if the index is valid
+            completed = tasks.pop(idx)                                                                 # Remove the task
+            save_tasks(tasks)                                                                          # Save the updated task list
+            print(f"Completed task: {completed}")                                                      # Print success message
+        else:
+            print("Invalid Task Number")                                                               # Invalid index
+    except ValueError:
+        print("Invalid input. Please enter a valid task number.")                                      # Handle non-integer input
 
 
 
@@ -135,4 +180,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
