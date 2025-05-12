@@ -9,19 +9,22 @@ tasks = []                                                                      
 
 
 # Function to load tasks from file
-def load_tasks(filename="todo-list.txt"):
-    try:
-        with open(filename, "r") as file:
-            return [line.strip() for line in file.readlines()]
-    except FileNotFoundError:
-        return []
+def load(filename="list.txt"):
+   try:
+      with open(filename, "r") as file:                                             # Opens the file in read mode 
+         return [line.strip() for line in file.readlines()]                         # Returns a list containing each line in the file as a list item
+   except FileNotFoundError:                                                        # If file or directory does not exist
+      return []
 
 # Function to save tasks to file
-def save_tasks(tasks, filename="todo-list.txt"):
-    with open(filename, "w") as file:
-        for task in tasks:
-            file.write(f"{task}\\n")
+def save(tasks, filename="list.txt"):                                               
+   with open(filename, "w") as file:                                                # Opens the file in write mode
+      for task in tasks:                                                            
+         file.write(f"{task}\\n")                                                   # Edits the content of the file
 
+# Function to exit the program
+def exit():
+   quit("Program closing, goodbye!")
 
 # Function to add a task - Adds a new task to the to-do list
 # Fajilan, Mark Justin
