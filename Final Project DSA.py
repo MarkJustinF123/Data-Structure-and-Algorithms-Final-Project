@@ -11,23 +11,26 @@ tasks = []                                                                      
 
 # Function to load tasks from file
 # Gonzales, Johann Franz
-def load_tasks(filename="todo_list.txt"):
+def load_tasks(filename=file_name):
+   global tasks
    try:
       with open(filename, "r") as file:                                             # Opens the file in read mode 
          return [line.strip() for line in file.readlines()]                         # Returns a list containing each line in the file as a list item
    except FileNotFoundError:                                                        # If file or directory does not exist
+      with open(filename, "w") as file:                                            # Create the file if it doesn't exist
+         pass
       return []
 
 # Function to save tasks to file
 # Gonzales, Johann Franz
-def save_tasks(tasks, filename="todo_list.txt"):                                               
+def save_tasks(tasks, filename=file_name):                                               
    with open(filename, "w") as file:                                                # Opens the file in write mode
       for task in tasks:                                                            
-         file.write(f"{task}\\n")                                                   # Edits the content of the file
+         file.write(f"{task}\n")                                                   # Edits the content of the file
 
 # Function to exit the program
 # Gonzales, Johann Franz
-def exit():
+def exit_app():
    print("Program Terminated. Thank you for using Everyday Life. ") 
    sys.exit()                                                                                 # Exits the program
 
@@ -51,7 +54,8 @@ def add_task():
         print("Invalid input. Please enter 'Y' for urgent or 'N' for not urgent.")
         return
     
-    print("Task added successfully!")     
+    print("Task added successfully!")    
+    save_tasks(tasks)                                                               # Save the updated task list to the file 
 
 # Function to display tasks - Displays the current tasks in the to-do list
 def display_tasks():
@@ -59,7 +63,7 @@ def display_tasks():
         print("No tasks in the list.")
     else:
         print("\nYour Tasks:")
-        for idx, task in enumerate(tasks):
+        for idx, task in enumerate(tasks, start=1):
             print(f"{idx}. {task}")
         print()
 
@@ -67,11 +71,11 @@ def display_tasks():
 # Function to delete a task - Removes a task from the to-do list
 # Kendric Justine D. Faz
 def delete_task():
-    display_tasks(tasks)                                                                               # Display current tasks
+    display_tasks()                                                                                    # Display current tasks
     if not tasks:                                                                                      # No tasks to delete
         return                                                                                         # Skip to next iteration
     try:
-        idx = int(input("Enter the task number to delete: "))                                          # Get user input
+        idx = int(input("Enter the task number to delete: ")) - 1                                      # Get user input
         if 0 <= idx < len(tasks):                                                                      # Check if the index is valid
             removed = tasks.pop(idx)                                                                   # Remove the task
             save_tasks(tasks)                                                                          # Save the updated task list
@@ -84,11 +88,11 @@ def delete_task():
 # Complete Task - Marks a task as complete
 # Kendric Justine D. Faz
 def complete_task():
-    display_tasks(tasks)                                                                               # Display current tasks
+    display_tasks()                                                                                    # Display current tasks
     if not tasks:
         return
     try:
-        idx = int(input("Enter the task number to mark as complete: "))                                # Get user input
+        idx = int(input("Enter the task number to mark as complete: ")) - 1                            # Get user input
         if 0 <= idx < len(tasks):                                                                      # Check if the index is valid
             completed = tasks.pop(idx)                                                                 # Remove the task
             save_tasks(tasks)                                                                          # Save the updated task list
@@ -101,6 +105,7 @@ def complete_task():
 # Main Menu - Function to display the main menu and handle user input
 # Fajilan, Mark Justin
 def main():
+    load_tasks();                                                                                      # Load tasks from file
     while True:
         print("Welcome to EveryDay Life - To-Do List Application")
         print("Please choose an option:")
@@ -120,7 +125,7 @@ def main():
         elif choice == '4':
             complete_task()
         elif choice == '5':
-            exit()
+            exit_app()
             break
         else:
             print("Invalid input. Try again.\n")
