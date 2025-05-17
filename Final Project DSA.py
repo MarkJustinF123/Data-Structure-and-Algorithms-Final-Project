@@ -2,6 +2,7 @@
 # This program allows users to add, view, mark as complete, and delete tasks from a to-do list.
 
 import os
+import sys
 
 file_name = "todo_list.txt"                                                         # File to store the tasks
 limit_tasks = 10                                                                    # Maximum number of tasks allowed
@@ -9,7 +10,8 @@ tasks = []                                                                      
 
 
 # Function to load tasks from file
-def load(filename="list.txt"):
+# Gonzales, Johann Franz
+def load_tasks(filename="todo_list.txt"):
    try:
       with open(filename, "r") as file:                                             # Opens the file in read mode 
          return [line.strip() for line in file.readlines()]                         # Returns a list containing each line in the file as a list item
@@ -17,18 +19,21 @@ def load(filename="list.txt"):
       return []
 
 # Function to save tasks to file
-def save(tasks, filename="list.txt"):                                               
+# Gonzales, Johann Franz
+def save_tasks(tasks, filename="todo_list.txt"):                                               
    with open(filename, "w") as file:                                                # Opens the file in write mode
       for task in tasks:                                                            
          file.write(f"{task}\\n")                                                   # Edits the content of the file
 
 # Function to exit the program
+# Gonzales, Johann Franz
 def exit():
-   quit("Program closing, goodbye!")
+   print("Program Terminated. Thank you for using Everyday Life. ") 
+   sys.exit()                                                                                 # Exits the program
 
 # Function to add a task - Adds a new task to the to-do list
 # Fajilan, Mark Justin
-def add_task(task):
+def add_task():
     if len(tasks) >= limit_tasks:                                                   # Check if the task limit is reached
         print("Task limit reached. Please delete a task before adding a new one.")
         return
@@ -47,7 +52,17 @@ def add_task(task):
         return
     
     print("Task added successfully!")     
-    
+
+# Function to display tasks - Displays the current tasks in the to-do list
+def display_tasks():
+    if not tasks:
+        print("No tasks in the list.")
+    else:
+        print("\nYour Tasks:")
+        for idx, task in enumerate(tasks):
+            print(f"{idx}. {task}")
+        print()
+
     
 # Function to delete a task - Removes a task from the to-do list
 # Kendric Justine D. Faz
@@ -101,11 +116,11 @@ def main():
         elif choice == '2':
             delete_task()
         elif choice == '3':
-            view_tasks()
+             display_tasks()
         elif choice == '4':
             complete_task()
         elif choice == '5':
-            print("Program terminated. Thank you for using the program!")
+            exit()
             break
         else:
             print("Invalid input. Try again.\n")
