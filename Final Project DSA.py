@@ -136,3 +136,23 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# EveryDay Life - A simple to-do list application in Python
+# The program is a simple to-do list application that allows users to manage their tasks.
+# Users can add, delete, view, and mark tasks as complete. The tasks are stored in a text file.
+# The program is designed to be user-friendly and provides feedback for each action taken.
+# The program is structured with functions for each task, making it easy to maintain and extend.
+# The program is designed to be run in a terminal or command prompt.
+# The program is a simple to-do list application that allows users to manage their tasks.
+# Users can add, delete, view, and mark tasks as complete. The tasks are stored in a text file.
+# The program is designed to be user-friendly and provides feedback for each action taken.
+# The program is structured with functions for each task, making it easy to maintain and extend.
+# The program is designed to be run in a terminal or command prompt.
+# The program is a simple to-do list application that allows users to manage their tasks.
+# Users can add, delete, view, and mark tasks as complete. The tasks are stored in a text file.
+
+# Members:
+# Fajilan, Mark Justin
+# Gonzales, Johann Franz
+# Kendric Justine D. Faz
