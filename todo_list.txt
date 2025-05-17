@@ -1,10 +1,7 @@
-[Urgent] Go to school
-[Urgent] Review for Test
-[Urgent] Buy Grocery
-[Urgent] Water the Plants
-[Urgent] Wash the Dishes
+[Urgent] Go to school [Done]
+[Urgent] Review for Test [Done]
+[Urgent] Buy Grocery [Done]
+[Urgent] Water the Plants [Done]
 [Urgent] Do Homework
 [Not Urgent] Take a Bath
 [Not Urgent] Clean the House
-[Not Urgent] Walk the Dog
-[Not Urgent] Play Video Games

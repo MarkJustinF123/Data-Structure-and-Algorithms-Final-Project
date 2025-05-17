@@ -6,7 +6,6 @@ import sys
 
 file_name = "todo_list.txt"                                                         # File to store the tasks
 limit_tasks = 10                                                                    # Maximum number of tasks allowed
-tasks = []                                                                          # List to store tasks
 
 
 # Function to load tasks from file
@@ -88,24 +87,29 @@ def delete_task():
 # Complete Task - Marks a task as complete
 # Kendric Justine D. Faz
 def complete_task():
-    display_tasks()                                                                                    # Display current tasks
+    display_tasks()                                                                                    # Show current tasks
     if not tasks:
         return
     try:
-        idx = int(input("Enter the task number to mark as complete: ")) - 1                            # Get user input
-        if 0 <= idx < len(tasks):                                                                      # Check if the index is valid
-            completed = tasks.pop(idx)                                                                 # Remove the task
-            save_tasks(tasks)                                                                          # Save the updated task list
-            print(f"Completed task: {completed}")                                                      # Print success message
+        idx = int(input("Enter the task number to mark as complete: ")) - 1                            # Get user input              
+        if 0 <= idx < len(tasks):
+            if "[Done]" in tasks[idx]:
+                print("This task is already marked as complete.")
+            else:
+                tasks[idx] = f"{tasks[idx]} [Done]"                                                    # Mark task as done
+                save_tasks(tasks)
+                print(f"Task marked as complete: {tasks[idx]}")
         else:
-            print("Invalid Task Number")                                                               # Invalid index
+            print("Invalid Task Number")
     except ValueError:
-        print("Invalid input. Please enter a valid task number.")                                      # Handle non-integer input
+        print("Invalid input. Please enter a valid task number.")
+
 
 # Main Menu - Function to display the main menu and handle user input
 # Fajilan, Mark Justin
 def main():
-    load_tasks();                                                                                      # Load tasks from file
+    global tasks
+    tasks = load_tasks()                                                                               # Load tasks from file
     while True:
         print("Welcome to EveryDay Life - To-Do List Application")
         print("Please choose an option:")
